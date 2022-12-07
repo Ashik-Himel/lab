@@ -47,3 +47,28 @@ int main() {
     printf("The factorial of %d is: %d", num, factorial(num));
     return 0;
 }
+
+
+
+#include <stdio.h>
+
+int countDigits(int n) {
+    static int count=0;
+     
+    if(n > 0) {
+        count++;
+        countDigits(n/10);
+    }
+    else {
+        return count;
+    }
+}
+
+int main() {
+    int num;
+    printf("Enter a number: ");
+    scanf("%d",&num);
+     
+    printf("Total digits in number %d is: %d\n",num,countDigits(num));
+    return 0;
+}
