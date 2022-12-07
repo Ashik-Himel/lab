@@ -1,54 +1,28 @@
 #include <stdio.h>
-#include <math.h>
-
-void armstrong(int n) {
-    int n_track = n, n_track2 = n, d_track = 1, sum = 0;
-
-    while (n_track > 9) {
-        d_track++;
-        n_track /= 10;
-    }
-    
-    while (n_track2 != 0) {
-        int r = n_track2 % 10;
-        sum += pow(r, d_track);
-        n_track2 /= 10;
-    }
-    
-    if (sum == n) {
-        printf("%d is an armstrong number.\n", n);
-    }
-    else {
-        printf("%d is not an armstrong number.\n", n);
-    }
-}
-
-void perfect(int n) {
-    int sum = 0;
-    for (int i = 1; i < n; i++) {
-        if (n % i == 0) {
-            sum += i;
-        }
-    }
-
-    if (sum == n) {
-        printf("%d is a perfect number.", n);
-    }
-    else {
-        printf("%d is not a perfect number.", n);
-    }
-}
 
 int main() {
-    // Armstrong Number
-    int num;
-    printf("Enter a number to check if it is armstrong number or not: ");
-    scanf("%d", &num);
-    armstrong(num);
+    // Frequency of each element in an array
+    int n;
+    printf("Enter the size of the array: ");
+    scanf("%d", &n);
 
-    // Perfect Number
-    int num2;
-    printf("Enter a number to check if it is perfect number or not: ");
-    scanf("%d", &num2);
-    perfect(num2);
+    int arr1[n];
+    printf("Enter all elements of the array: ");
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &arr1[i]);
+    }
+
+    for (int j = 0; j < n; j++) {
+        if (arr1[j] != -1) {
+            int count = 1;
+            for (int k = j+1; k < n; k++) {
+                if (arr1[j] == arr1[k]) {
+                    count++;
+                    arr1[k] = -1;
+                }
+            }
+            printf("%d's frequency in this array is: %d\n", arr1[j], count);
+        }
+    }
+    return 0;
 }
